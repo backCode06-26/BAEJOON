@@ -17,8 +17,6 @@ public class Main {
             	for(int j=0; j<5; j++) {
             		if(i >= 0 && i < strs[j].length()) {
             			System.out.print(strs[j].charAt(i));
-            		}else {
-            			System.out.print("");
             		}
             	}
             	i++;
