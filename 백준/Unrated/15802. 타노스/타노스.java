@@ -7,7 +7,7 @@ public class Main {
         
         String name = br.readLine();
         
-        if(name.equals("chocolate")){
+        if(name.equals("java")){
             bw.write(String.valueOf("1"));
         }else{
             bw.write(String.valueOf("0"));
