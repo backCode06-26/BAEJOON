@@ -1,4 +1,5 @@
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,25 +10,25 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
+		int num = Integer.parseInt(br.readLine());
 		
 		Stack<Integer> stack = new Stack<Integer>();
         StringBuilder sb = new StringBuilder();
 		
-		for(int i = 0; i < N; i++) {
+		for(int i = 0; i < num; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			String S = st.nextToken();
+			String str = st.nextToken();
 			
-			if(S.equals("push")) stack.push(Integer.parseInt(st.nextToken()));
-			else if(S.equals("pop")) {
+			if(str.equals("push")) stack.push(Integer.parseInt(st.nextToken()));
+			else if(str.equals("pop")) {
 				if(!stack.empty()) {
 					sb.append(stack.pop()).append("\n");
 				} else {
 					sb.append(-1).append("\n");
 				}
-			} else if(S.equals("size")) {
+			} else if(str.equals("size")) {
                 sb.append(stack.size()).append("\n");
-			} else if(S.equals("empty")) {
+			} else if(str.equals("empty")) {
 				if(!stack.empty()) {
 					sb.append(0).append("\n");
 				} else {
