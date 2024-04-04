@@ -1,0 +1,6 @@
+-- 코드를 입력하세요
+SELECT O.ANIMAL_ID, O.NAME
+from ANIMAL_INS I, ANIMAL_OUTS O
+where I.ANIMAL_ID(+) = O.ANIMAL_ID
+and I.ANIMAL_ID is null
+order by O.ANIMAL_ID;
