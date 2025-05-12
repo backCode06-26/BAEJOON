@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Main {
@@ -8,29 +9,25 @@ public class Main {
 
         int n = Integer.parseInt(br.readLine());
 
-        LinkedList<Integer> queue = new LinkedList<>();
+        // ArrayList는 앞으로 당겨야하기 때문에 느리기 때문에 LinkedList를 사용합니다.
+        // 그 이유는 시간복잡도는 o(1)이라서 더 빠르기 때문입니다.
+        LinkedList<String> queue = new LinkedList<>();
 
         for (int i = 0; i < n; i++) {
-            String[] line = br.readLine().split(" ");
-            switch (line[0]) {
-                case "push" :
-                    queue.offer(Integer.parseInt(line[1]));
-                    break;
-                case "pop" :
-                    if(queue.peek() != null) bw.write(queue.poll()+"\n");
-                    else bw.write("-1\n");
-                    break;
-                case "size" :
-                    bw.write(queue.size()+"\n");
-                    break;
-                case "empty" :
-                    bw.write((queue.isEmpty() ? 1 : 0)+"\n");
-                    break;
-                case "front" :
-                    bw.write((queue.isEmpty() ? -1 : queue.peekFirst())+"\n");
-                    break;
-                case "back" :
-                    bw.write((queue.isEmpty() ? -1 : queue.peekLast())+"\n");
+            String cmd = br.readLine();
+
+            if (cmd.startsWith("pu")) {
+                queue.add(cmd.substring(5));
+            } else if (cmd.startsWith("p")) {
+                bw.write((queue.peek() == null ?  "-1" : queue.pop())+"\n");
+            } else if (cmd.startsWith("s")) {
+                bw.write(queue.size()+"\n");
+            } else if (cmd.startsWith("e")) {
+                bw.write((queue.isEmpty() ?  "1" : "0")+"\n");
+            } else if (cmd.startsWith("f")) {
+                bw.write((queue.isEmpty() ?  "-1" : queue.peekFirst())+"\n");
+            } else if (cmd.startsWith("b")) {
+                bw.write((queue.isEmpty() ?  "-1" : queue.peekLast())+"\n");
             }
         }
         br.close();
