@@ -1,11 +1,10 @@
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
 
         int n = Integer.parseInt(br.readLine());
 
@@ -19,19 +18,18 @@ public class Main {
             if (cmd.startsWith("pu")) {
                 queue.add(cmd.substring(5));
             } else if (cmd.startsWith("p")) {
-                bw.write((queue.peek() == null ?  "-1" : queue.pop())+"\n");
+                sb.append((queue.peek() == null ?  "-1" : queue.pop())).append("\n");
             } else if (cmd.startsWith("s")) {
-                bw.write(queue.size()+"\n");
+                sb.append(queue.size()).append("\n");
             } else if (cmd.startsWith("e")) {
-                bw.write((queue.isEmpty() ?  "1" : "0")+"\n");
+                sb.append((queue.isEmpty() ?  "1" : "0")).append("\n");
             } else if (cmd.startsWith("f")) {
-                bw.write((queue.isEmpty() ?  "-1" : queue.peekFirst())+"\n");
+                sb.append((queue.isEmpty() ?  "-1" : queue.peekFirst())).append("\n");
             } else if (cmd.startsWith("b")) {
-                bw.write((queue.isEmpty() ?  "-1" : queue.peekLast())+"\n");
+                sb.append((queue.isEmpty() ?  "-1" : queue.peekLast())).append("\n");
             }
         }
+        System.out.println(sb.toString());
         br.close();
-        bw.flush();
-        bw.close();
     }
 }
