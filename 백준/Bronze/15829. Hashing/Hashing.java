@@ -1,18 +1,25 @@
 import java.util.Scanner;
+import java.math.BigInteger;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int  n = sc.nextInt();
+        int t = sc.nextInt();
         String str = sc.next();
-        sc.close();
 
-        int total = 0;
-        for (int i = 0; i < n; i++) {
-            int num = (int) ((str.charAt(i) - 'a' + 1) * Math.pow(31,i));
-            total += num;
+        int r = 31;
+        int m = 1234567891;
+
+        long pow = 1;
+        long sum = 0;
+
+        for (int i = 0; i < t; i++) {
+            int num = str.charAt(i) - 'a' + 1;
+            sum += (num * pow) % m;
+            pow = (r * pow) % m;
         }
-        System.out.println(total);
+
+        System.out.println(sum%m);
     }
 }
