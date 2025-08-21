@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,32 +8,38 @@ public class Main {
 
         int[] arr = new int[t];
 
-        Map<Integer, Integer> map = new HashMap<>();
+        int[] counts = new int[8001];
 
         int sum = 0;
         for (int i = 0; i < t; i++) {
             int num = sc.nextInt();
-            map.put(num, map.getOrDefault(num, 0) + 1);
 
             sum += num;
-
             arr[i] = num;
+            counts[num + 4000]++;
         }
         Arrays.sort(arr);
 
         int avg = Math.round((float) sum / t);
 
-        int idx = arr.length / 2;
-        int median = arr[idx];
+        int median = arr[t/2];
 
-        int maxValue = map.values().stream().max(Integer::compareTo).orElseThrow(() -> new NoSuchElementException("값이 존재하지 않습니다"));
+        List<Integer> modes = new ArrayList<>();
 
-        List<Integer> maxKeys = map.entrySet().stream()
-                .filter(e -> e.getValue() == maxValue)
-                .map(Map.Entry::getKey)
-                .sorted()
-                .collect(Collectors.toList());
-        int mode = maxKeys.get(maxKeys.size() == 1 ? 0 : 1);
+        int max = 0;
+        for (int i = 0; i < counts.length; i++) {
+            if (max < counts[i]) {
+                max = counts[i];
+                modes.clear();
+                modes.add(i - 4000);
+
+            } else if (max == counts[i]) {
+                modes.add(i - 4000);
+
+            }
+        }
+
+        int mode = modes.size() == 1 ? modes.get(0) : modes.get(1);
 
         int range = arr[arr.length - 1] - arr[0];
 
